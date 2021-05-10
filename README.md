@@ -25,7 +25,7 @@ The workflow of an ATM is defined by the following rules:
 
 
 ## 2. Auriga Flight Comparison
-This is a sample flight price comparison service. Analyze the [API specifications](.\flight-comparison-openapi.json) and design a test suite for this endpoint.
+This is a sample flight price comparison service. Analyze the [API specifications](flight-comparison-openapi.json) and design a test suite for this endpoint.
 ```
 GET http://localhost/flights/from/{departureCode}/to/{arrivalCode}
 ```

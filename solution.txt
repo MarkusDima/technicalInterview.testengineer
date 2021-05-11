@@ -1,0 +1,58 @@
+1) state:
+WORKING --> CARD ACCEPTED --> WAITING POLICE
+						  --> TRANSACTION PROCESSED --> SELF TESTING (1) 
+        --> SELF TESTING  --> WORKING
+						  --> WAITING SERVICE --> WORKING (1)
+						  --> SELF TESTING (1)
+						  
+						
+						
+						
+test 
+PRECODITION 					ACTION							       EXPECTED RESULT
+1) ATM turned off				perform TURN ON action              ATM goes in WORKING state
+2) ATM in WORKING STATE			perform accept card (insert card)   ATM goes in CARD ACCEPTED
+3) ATM in WORKING STATE 		perform automatic testing action    ATM goes to SELF TESTING
+4) ATM in CARD ACCEPTED			perform CALL POLICE 				ATM gose to WAITING POLICE
+5) ATM in CARD ACCEPTED			Process transaction 				ATM gose to TRANSACTION PROCESSED
+6) ATM in TRANSACTION PROCESSED perform PULL CARD action 			ATM went to SELF TESTING
+7) ATM in SELF TESTING 			test PASSED							ATM goes to WORKING
+8) ATM in SELF TESTING 			test FAILED 						ATM goes to WAITING SERVICE
+9) ATM in WAITING SERVICE		be serviced							ATM went to WORKING
+10) ATM in WAITING SERVICE		be retested							ATM went to SELF TESTING
+
+2)
+API: http://localhost/flight-engine/api
+
+Flight:
+id
+airlineId
+departureAirportID
+ArrivalAirportID
+price
+
+
+
+Airport Collection -> ARRAY
+Airport:
+id
+codeIata
+latitude
+longitude
+
+
+Airlines collection -> ARRAY
+Airline:
+id
+name
+codeIataPrefix
+logoFilename
+
+
+1) test API http://localhost/flight-engine/api/airports/all return all available airports with mandatory data
+2) test API http://localhost/flight-engine/api/airlines/all return all available airline available
+3) test API http://localhost/flight-engine/api/flights/from/{departureCode}/to/{arrivalCode} using valid codeIATA  ->response list of flight 
+4) test API http://localhost/flight-engine/api/flights/from/{departureCode}/to/{arrivalCode} using not valid codeIata in DepartureCode/ArrivalCode -> airport not valid
+
+
+

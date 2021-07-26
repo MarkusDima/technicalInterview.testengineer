@@ -1,0 +1,690 @@
+{
+	"info": {
+		"_postman_id": "a35870c5-5338-4dec-9d70-c82862af879a",
+		"name": "Auriga Flight Comparison",
+		"description": "This is a sample flight price comparison service\n\nContact Support:\n Email: gaetano.zri@aurigaspa.com",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "flights",
+			"item": [
+				{
+					"name": "Get all available flights",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/flights/all",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"flights",
+								"all"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/flights/all",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"flights",
+										"all"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"data\": [\n  {\n   \"id\": -28871617,\n   \"airlineId\": -22881031,\n   \"departureAirportId\": -94067701,\n   \"arrivalAirportId\": 66585560,\n   \"price\": -85180445.3654716\n  },\n  {\n   \"id\": 69453055,\n   \"airlineId\": 82185904,\n   \"departureAirportId\": -74988260,\n   \"arrivalAirportId\": 73378362,\n   \"price\": -56865678.20428219\n  }\n ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get all available flights between two airports, stopovers included, ordered by increasing price",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/flights/from/:departureCode/to/:arrivalCode",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"flights",
+								"from",
+								":departureCode",
+								"to",
+								":arrivalCode"
+							],
+							"variable": [
+								{
+									"key": "departureCode",
+									"value": "R2x",
+									"description": "(Required) Departure airport IATA code"
+								},
+								{
+									"key": "arrivalCode",
+									"value": "R2x",
+									"description": "(Required) Arrival airport IATA code"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/flights/from/:departureCode/to/:arrivalCode",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"flights",
+										"from",
+										":departureCode",
+										"to",
+										":arrivalCode"
+									],
+									"variable": [
+										{
+											"key": "departureCode"
+										},
+										{
+											"key": "arrivalCode"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"data\": [\n  {\n   \"id\": 87465799,\n   \"airlineId\": -54783078,\n   \"departureAirportId\": 52705336,\n   \"arrivalAirportId\": 78796368,\n   \"price\": -91256935.08724666\n  },\n  {\n   \"id\": 96838384,\n   \"airlineId\": -14296816,\n   \"departureAirportId\": 70572092,\n   \"arrivalAirportId\": -58958731,\n   \"price\": -85333427.55412176\n  }\n ]\n}"
+						},
+						{
+							"name": "Unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "https://1e87c88b-14ae-4d46-a4eb-2cbd4b03c6a7.mock.pstmn.io/flights/from/:departureCode/to/:arrivalCode",
+									"protocol": "https",
+									"host": [
+										"1e87c88b-14ae-4d46-a4eb-2cbd4b03c6a7",
+										"mock",
+										"pstmn",
+										"io"
+									],
+									"path": [
+										"flights",
+										"from",
+										":departureCode",
+										"to",
+										":arrivalCode"
+									],
+									"variable": [
+										{
+											"key": "departureCode"
+										},
+										{
+											"key": "arrivalCode"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Airport not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/flights/from/:departureCode/to/:arrivalCode",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"flights",
+										"from",
+										":departureCode",
+										"to",
+										":arrivalCode"
+									],
+									"variable": [
+										{
+											"key": "departureCode"
+										},
+										{
+											"key": "arrivalCode"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Get all available flights between two airports - Airport not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/flights/from/:departureCode/to/:arrivalCode",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"flights",
+										"from",
+										":departureCode",
+										"to",
+										":arrivalCode"
+									],
+									"variable": [
+										{
+											"key": "departureCode",
+											"value": "notExistingDepartureCode",
+											"description": "(Required) Departure airport IATA code"
+										},
+										{
+											"key": "arrivalCode",
+											"value": "existingDepartureCode",
+											"description": "(Required) Arrival airport IATA code"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"description\": \"Airport not found\"\r\n}"
+						},
+						{
+							"name": "Get all available flights between two airports - Airport not found 2",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/flights/from/:departureCode/to/:arrivalCode",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"flights",
+										"from",
+										":departureCode",
+										"to",
+										":arrivalCode"
+									],
+									"variable": [
+										{
+											"key": "departureCode",
+											"value": "notExistingDepartureCode",
+											"description": "(Required) Departure airport IATA code"
+										},
+										{
+											"key": "arrivalCode",
+											"value": "notExistingDepartureCode",
+											"description": "(Required) Arrival airport IATA code"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"description\": \"Airport not found\"\r\n}"
+						},
+						{
+							"name": "Get all available flights between two airports - Airport not found 3",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/flights/from/:departureCode/to/:arrivalCode",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"flights",
+										"from",
+										":departureCode",
+										"to",
+										":arrivalCode"
+									],
+									"variable": [
+										{
+											"key": "departureCode",
+											"value": "ExistingDepartureCode",
+											"description": "(Required) Departure airport IATA code"
+										},
+										{
+											"key": "arrivalCode",
+											"value": "notExistingDepartureCode",
+											"description": "(Required) Arrival airport IATA code"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"description\": \"Airport not found\"\r\n}"
+						},
+						{
+							"name": "Get all available flights between two airports, stopovers included, ordered by increasing price - 200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "https://1e87c88b-14ae-4d46-a4eb-2cbd4b03c6a7.mock.pstmn.io/flights/from/:departureCode/to/:arrivalCode",
+									"protocol": "https",
+									"host": [
+										"1e87c88b-14ae-4d46-a4eb-2cbd4b03c6a7",
+										"mock",
+										"pstmn",
+										"io"
+									],
+									"path": [
+										"flights",
+										"from",
+										":departureCode",
+										"to",
+										":arrivalCode"
+									],
+									"variable": [
+										{
+											"key": "departureCode",
+											"value": "R2x",
+											"description": "(Required) Departure airport IATA code"
+										},
+										{
+											"key": "arrivalCode",
+											"value": "R2x",
+											"description": "(Required) Arrival airport IATA code"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 26 Jul 2021 07:58:50 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "x-srv-trace",
+									"value": "v=1;t=cae055b6d4ec4e76"
+								},
+								{
+									"key": "x-srv-span",
+									"value": "v=1;s=a3de4e162c255166"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "120"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "118"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1627286332"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"145-VFhz/ykXL2Ec0d22YAC0ovDknQU\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"description\" : \"Successful request\",\n    \"data\": [\n        {\n            \"id\": 87465799,\n            \"airlineId\": -54783078,\n            \"departureAirportId\": 52705336,\n            \"arrivalAirportId\": 78796368,\n            \"price\": -91256935.08724666\n        },\n        {\n            \"id\": 96838384,\n            \"airlineId\": -14296816,\n            \"departureAirportId\": 70572092,\n            \"arrivalAirportId\": -58958731,\n            \"price\": -85333427.55412176\n        }\n    ]\n}"
+						},
+						{
+							"name": "Get all available flights between two airports, stopovers included, ordered by increasing price - 200 OK Copy",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "https://1e87c88b-14ae-4d46-a4eb-2cbd4b03c6a7.mock.pstmn.io/flights/from/:departureCode/to/:arrivalCode",
+									"protocol": "https",
+									"host": [
+										"1e87c88b-14ae-4d46-a4eb-2cbd4b03c6a7",
+										"mock",
+										"pstmn",
+										"io"
+									],
+									"path": [
+										"flights",
+										"from",
+										":departureCode",
+										"to",
+										":arrivalCode"
+									],
+									"variable": [
+										{
+											"key": "departureCode",
+											"value": "R2x",
+											"description": "(Required) Departure airport IATA code"
+										},
+										{
+											"key": "arrivalCode",
+											"value": "R2x",
+											"description": "(Required) Arrival airport IATA code"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 26 Jul 2021 07:58:50 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "x-srv-trace",
+									"value": "v=1;t=cae055b6d4ec4e76"
+								},
+								{
+									"key": "x-srv-span",
+									"value": "v=1;s=a3de4e162c255166"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "120"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "118"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1627286332"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"145-VFhz/ykXL2Ec0d22YAC0ovDknQU\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"description\" : \"Unauthorized\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Get all available airports",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/airports/all",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"airports",
+						"all"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Successful request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/airports/all",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"airports",
+								"all"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"data\": [\n  {\n   \"id\": 5784782,\n   \"codeIata\": \"quis ex qui proident laborum\",\n   \"latitude\": \"dolore minim labore ullamco ea\",\n   \"longitude\": \"laborum officia amet nisi\"\n  },\n  {\n   \"id\": -86441191,\n   \"codeIata\": \"anim\",\n   \"latitude\": \"deserunt in dolore\",\n   \"longitude\": \"ullamco aliqua do magna\"\n  }\n ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Get all available airlines",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/airlines/all",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"airlines",
+						"all"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Successful request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: bearer",
+								"key": "Authorization",
+								"value": "Bearer <token>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/airlines/all",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"airlines",
+								"all"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n \"data\": {}\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "<Bearer Token>",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost/flight-engine/api",
+			"type": "string"
+		}
+	]
+}
